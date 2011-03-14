@@ -5,6 +5,9 @@ using System.Web.Routing;
 using NHibernate;
 using Ninject;
 using Ninject.Web.Mvc;
+using System.Web;
+using System.Diagnostics;
+using ClassTracker.Dependencies;
 
 
 namespace ClassTracker
@@ -37,9 +40,16 @@ namespace ClassTracker
             sessionFactory.OpenSession();
         }
 
-        protected void MvcApplication_EndRequest()
+        private void MvcApplication_EndRequest(object sender, System.EventArgs e)
         {
-
+            if (Context.Items.Contains(NHibernateModule.SESSION_KEY))
+            {
+                Debug.WriteLine("Disposing the NHibernate session");
+                NHibernate.ISession Session = (NHibernate.ISession)Context.Items[NHibernateModule.SESSION_KEY];
+                Session.Flush();
+                Session.Dispose();
+                Context.Items[NHibernateModule.SESSION_KEY] = null;
+            }
         }
 
         protected override IKernel CreateKernel()

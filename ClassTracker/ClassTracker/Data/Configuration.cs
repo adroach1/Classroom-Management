@@ -36,7 +36,7 @@ namespace ClassTracker.Data
         private void BuildSchema(NHibernate.Cfg.Configuration config)
         {
             new SchemaExport(config)
-                .Create(false, true);
+                .Create(false, false);
         }
 
         public ISession OpenSession()

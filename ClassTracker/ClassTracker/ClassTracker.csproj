@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\fluentnhibernate-NH3.0\Castle.Core.dll</HintPath>
+    <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\includes\fluentnhibernate-NH3.0\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\fluentnhibernate-NH3.0\FluentNHibernate.dll</HintPath>
@@ -90,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Data\Configuration.cs" />
     <Compile Include="Data\Mapping\AssignmentMapping.cs" />
     <Compile Include="Data\Mapping\CourseMapping.cs" />
@@ -114,12 +116,21 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentAssignmentInstance.cs" />
     <Compile Include="Models\StudentExamInstance.cs" />
-    <Compile Include="NHibernateModule.cs" />
+    <Compile Include="Dependencies\NHibernateModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\ctlogo.jpg" />
+    <Content Include="Content\images\ctlogo2.png" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Views\Student\Detail.aspx" />
+    <Content Include="Views\Student\EditStudent.aspx" />
+    <Content Include="Views\Student\Index.aspx" />
+    <Content Include="Views\Student\Search.aspx" />
+    <Content Include="Views\Student\StudentAdded.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -139,10 +150,6 @@
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
-    <Content Include="Views\Account\ChangePassword.aspx" />
-    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
-    <Content Include="Views\Account\LogOn.aspx" />
-    <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
@@ -152,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

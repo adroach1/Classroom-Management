@@ -10,9 +10,9 @@ namespace ClassTracker.Data
 	public class NHibernateRepository : IRepository
 	{
 
-		public NHibernateRepository()
+		public NHibernateRepository(ISession session)
 		{
-			_session = this.NHSsession;
+			_session = session;
 		}
 
 		private readonly ISession _session;
@@ -53,12 +53,14 @@ namespace ClassTracker.Data
 		public T Add<T>(T entity)
 		{
 			_session.Save(entity);
+            _session.Flush();
 			return entity;
 		}
 
 		public T Remove<T>(T entity)
 		{
 			_session.Delete(entity);
+            _session.Flush();
 			return entity;
 		}
 	}
